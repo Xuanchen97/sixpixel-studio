@@ -15,6 +15,6 @@
 
 ## Demo sites (fictional businesses)
 
-- [Saltwick Kitchen](https://xuanchen97.github.io/sixpixel-studio/demos/saltwick/): seasonal bistro — reservations, weekly menu, private dining.
-- [Lantern Lane Dumplings](https://xuanchen97.github.io/sixpixel-studio/demos/lantern/): counter-service dumplings — online ordering, dietary filters, promo reel.
-- [Fernwood Bakehouse](https://xuanchen97.github.io/sixpixel-studio/demos/fernwood/): neighbourhood bakery — live bake schedule, cake pre-orders, allergen table.
+- [Saltwick Kitchen](https://yuanlite-liu.github.io/sixpixel-studio/demos/saltwick/): seasonal bistro — reservations, weekly menu, private dining.
+- [Lantern Lane Dumplings](https://yuanlite-liu.github.io/sixpixel-studio/demos/lantern/): counter-service dumplings — online ordering, dietary filters, promo reel.
+- [Fernwood Bakehouse](https://yuanlite-liu.github.io/sixpixel-studio/demos/fernwood/): neighbourhood bakery — live bake schedule, cake pre-orders, allergen table.

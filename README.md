@@ -2,7 +2,7 @@
 
 Studio site and demo work for **Six Pixel** — websites, local SEO / AI-search (GEO) visibility and short promo videos for Toronto restaurants and small businesses.
 
-Live (after enabling GitHub Pages): https://xuanchen97.github.io/sixpixel-studio/
+Live (after enabling GitHub Pages): https://yuanlite-liu.github.io/sixpixel-studio/
 
 ## What's here
 
@@ -30,9 +30,9 @@ python3 -m http.server 8000
 ## Publish with GitHub Pages
 
 Repository → **Settings → Pages** → Source: *Deploy from a branch* → Branch: `main`, folder `/ (root)` → Save.
-The site appears at `https://xuanchen97.github.io/sixpixel-studio/` within a minute or two.
+The site appears at `https://yuanlite-liu.github.io/sixpixel-studio/` within a minute or two.
 
-If you later buy a domain (e.g. `sixpixel.ca`), add it under the same Pages settings and replace `https://xuanchen97.github.io/sixpixel-studio/` in `index.html`, `robots.txt`, `sitemap.xml` and `llms.txt`.
+If you later buy a domain (e.g. `sixpixel.ca`), add it under the same Pages settings and replace `https://yuanlite-liu.github.io/sixpixel-studio/` in `index.html`, `robots.txt`, `sitemap.xml` and `llms.txt`.
 
 ## Regenerate media
 
