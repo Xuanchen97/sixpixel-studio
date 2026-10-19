@@ -10,4 +10,4 @@ User-agent: PerplexityBot
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://yuanlite-liu.github.io/sixpixel-studio/sitemap.xml
+Sitemap: https://xuanchen97.github.io/sixpixel-studio/sitemap.xml
