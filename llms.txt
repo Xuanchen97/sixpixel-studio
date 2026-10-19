@@ -1,19 +1,31 @@
 # Six Pixel
 
-> Six Pixel is a small Toronto studio that fixes and rebuilds websites for restaurants and small businesses, improves their visibility on Google Search, Google Maps and AI assistants (local SEO and GEO), and produces short vertical promo videos for Instagram Reels, TikTok and YouTube Shorts.
+> Six Pixel is a Toronto customer-growth studio for local businesses. It audits how customers find a business today — website, Google search (SEO), AI assistants (GEO) and Google Maps — fixes what is losing customers, and keeps new ones coming with social media content and short promo videos for Instagram Reels, TikTok and YouTube Shorts.
 
 - Area served: Toronto and the Greater Toronto Area (Ontario, Canada).
+- Who it is for: auto repair shops, furniture and home retailers, restaurants and cafés, bakeries, salons, clinics and home-service trades.
 - Contact: jasonliu97424@gmail.com
-- Starting point: a free 15-minute site check, followed by a fixed quote.
+- Starting point: a free growth check, followed by a fixed quote. Optional monthly plans, no long contracts.
+
+## The growth audit (six areas)
+
+1. Website: mobile speed, clear services/prices/products, working calls, booking and checkout.
+2. Search (SEO): current and target rankings, on-page fixes.
+3. AI search (GEO): how ChatGPT, Gemini and Google AI Overviews describe the business; facts, FAQs and structured data they need.
+4. Google Maps: Business Profile categories, services, photos, hours, posts; consistent listings.
+5. Reviews & reputation: rating, volume, recency, replies, review requests.
+6. Social & video: which channels matter, what to post, how often.
 
 ## Services
 
-- Website refresh: text menus with prices and dietary tags, hours, maps, booking and ordering links, mobile speed and accessibility.
-- Search & AI visibility: Google Business Profile clean-up, Restaurant/LocalBusiness structured data, consistent directory listings, plain-language FAQs and llms.txt.
-- Promo videos: short vertical videos built from the client's own photos and clips, motion graphics and AI-assisted editing, captions; human-reviewed and posted only with approval.
+- Fix the foundations: website speed, accessibility, booking/quote/order flows, on-page SEO, analytics.
+- Get found on Maps & AI: Google Business Profile optimization, directory consistency, LocalBusiness/Product schema, llms.txt and AI-readable FAQs.
+- Grow with social & video: monthly content plans, short vertical promo videos, ad-ready creatives, monthly results report. Videos are human-reviewed and posted only with approval.
 
 ## Demo sites (fictional businesses)
 
-- [Saltwick Kitchen](https://xuanchen97.github.io/sixpixel-studio/demos/saltwick/): seasonal bistro — reservations, weekly menu, private dining.
-- [Lantern Lane Dumplings](https://xuanchen97.github.io/sixpixel-studio/demos/lantern/): counter-service dumplings — online ordering, dietary filters, promo reel.
-- [Fernwood Bakehouse](https://xuanchen97.github.io/sixpixel-studio/demos/fernwood/): neighbourhood bakery — live bake schedule, cake pre-orders, allergen table.
+- [Torque & Tread Auto](https://xuanchen97.github.io/sixpixel-studio/demos/auto/): auto repair — price ranges, online booking, seasonal promo video.
+- [Oak & Ash Home](https://xuanchen97.github.io/sixpixel-studio/demos/furniture/): furniture showroom — product listings, sale prices, room filters, delivery info, sale video.
+- [Lantern Lane Dumplings](https://xuanchen97.github.io/sixpixel-studio/demos/lantern/): counter-service restaurant — online ordering, dietary filters, promo reel.
+- [Saltwick Kitchen](https://xuanchen97.github.io/sixpixel-studio/demos/saltwick/): bistro — reservations, weekly menu, private dining, promo reel.
+- [Fernwood Bakehouse](https://xuanchen97.github.io/sixpixel-studio/demos/fernwood/): bakery — live bake schedule, cake pre-orders, allergen table, promo reel.

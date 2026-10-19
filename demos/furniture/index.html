@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Oak &amp; Ash Home · Solid-Wood Furniture Showroom in Toronto (Demo)</title>
+  <meta name="description" content="Concept demo by Six Pixel: a furniture store site with product listings, a seasonal sale, GTA delivery info and a promo video. Fictional business.">
+  <!-- Demo of a fictional business: kept out of search results on purpose. -->
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#ece4d6">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../../assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "FurnitureStore",
+        "name": "Oak & Ash Home (demo)",
+        "description": "Fictional solid-wood furniture showroom used as a Six Pixel concept demo.",
+        "priceRange": "$$$",
+        "address": { "@type": "PostalAddress", "streetAddress": "Junction Triangle (fictional)", "addressLocality": "Toronto", "addressRegion": "ON", "addressCountry": "CA" },
+        "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "10:00", "closes": "18:00" }]
+      },
+      {
+        "@type": "ItemList",
+        "name": "Fall sale",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "item": { "@type": "Product", "name": "Harbour sofa", "material": "Solid oak, linen", "offers": { "@type": "Offer", "price": "1490.00", "priceCurrency": "CAD", "availability": "https://schema.org/InStock" } } },
+          { "@type": "ListItem", "position": 2, "item": { "@type": "Product", "name": "Ash dining table", "material": "Solid ash", "offers": { "@type": "Offer", "price": "990.00", "priceCurrency": "CAD", "availability": "https://schema.org/InStock" } } },
+          { "@type": "ListItem", "position": 3, "item": { "@type": "Product", "name": "Linen lounge chair", "offers": { "@type": "Offer", "price": "540.00", "priceCurrency": "CAD", "availability": "https://schema.org/InStock" } } }
+        ]
+      }
+    ]
+  }
+  </script>
+  <style>
+    @font-face { font-family: "Fraunces"; src: url("../../assets/fonts/fraunces.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+    @font-face { font-family: "Instrument Sans"; src: url("../../assets/fonts/instrument-sans.woff2") format("woff2"); font-weight: 400 700; font-display: swap; }
+    :root { --sand: #ece4d6; --sand-2: #e2d7c3; --paper: #fffaf1; --ink: #232120; --muted: #6a6359; --olive: #575e3f; --terra: #a8532f; --terra-ink: #9c4a2b; --serif: "Fraunces", Georgia, serif; --sans: "Instrument Sans", system-ui, sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--sand); color: var(--ink); font: 400 17px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { font: inherit; cursor: pointer; }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.025em; line-height: 1; font-variation-settings: "opsz" 120; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
+    :focus-visible { outline: 2px solid var(--terra); outline-offset: 3px; }
+    .demo-bar { background: #111; color: #eee; font-size: 13px; text-align: center; padding: 9px 16px; }
+    .demo-bar a { color: #f2c14e; text-decoration: underline; text-underline-offset: 3px; }
+    .sale-bar { background: var(--terra); color: var(--paper); text-align: center; font-size: 14.5px; font-weight: 600; padding: 9px 16px; }
+    header.top { position: sticky; top: 0; z-index: 10; background: rgba(236, 228, 214, 0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(35, 33, 32, 0.12); }
+    header.top .wrap { display: flex; justify-content: space-between; align-items: center; height: 70px; gap: 16px; }
+    .brand { font: 400 26px var(--serif); letter-spacing: -0.02em; }
+    .brand i { color: var(--terra); }
+    .links { display: flex; gap: 24px; font-size: 15px; font-weight: 500; }
+    .links a:hover { color: var(--terra-ink); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 50px; padding: 0 26px; border-radius: 999px; font: 600 15px var(--sans); background: var(--ink); color: var(--paper); border: 0; transition: background 0.25s, transform 0.25s; }
+    .btn:hover { background: var(--terra); transform: translateY(-2px); }
+    .btn.line { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+    .btn.line:hover { background: var(--ink); color: var(--paper); }
+    .hero { padding: clamp(48px, 8vw, 96px) 0; }
+    .hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
+    .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--olive); }
+    .hero h1 { margin-top: 18px; font-size: clamp(54px, 8vw, 112px); }
+    .hero h1 em { color: var(--terra); }
+    .hero p { margin-top: 22px; font-size: 19px; color: var(--muted); max-width: 520px; }
+    .hero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .perks { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 40px; font-size: 14.5px; color: var(--muted); }
+    .perks b { color: var(--ink); }
+    .room { position: relative; aspect-ratio: 1; border-radius: 28px; background: var(--olive); overflow: hidden; }
+    .room svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    section { padding: clamp(64px, 9vw, 110px) 0; }
+    h2 { margin-top: 12px; font-size: clamp(40px, 6vw, 70px); }
+    h2 em { color: var(--terra-ink); }
+    .shop-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+    .filters button { padding: 9px 16px; border-radius: 999px; border: 1.5px solid var(--ink); background: transparent; font-weight: 600; font-size: 14.5px; }
+    .filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 34px; }
+    .product { border-radius: 20px; background: var(--paper); overflow: hidden; transition: transform 0.35s, box-shadow 0.35s; }
+    .product[hidden] { display: none; }
+    .product:hover { transform: translateY(-4px); box-shadow: 0 26px 40px -30px rgba(35, 33, 32, 0.6); }
+    .product .pic { position: relative; aspect-ratio: 4 / 3; background: var(--sand-2); display: grid; place-items: center; }
+    .product .pic svg { width: 78%; height: auto; }
+    .product .tag { position: absolute; top: 12px; left: 12px; padding: 4px 10px; border-radius: 999px; background: var(--terra); color: var(--paper); font-size: 12px; font-weight: 700; }
+    .product .body { padding: 18px 20px 20px; }
+    .product h3 { font-size: 24px; }
+    .product p { margin-top: 4px; font-size: 14.5px; color: var(--muted); }
+    .product .price { margin-top: 12px; display: flex; gap: 10px; align-items: baseline; font-weight: 700; font-size: 19px; }
+    .product .price s { color: var(--muted); font-weight: 400; font-size: 15px; }
+    .product .price .now { color: var(--terra-ink); }
+    .reel-sec { background: var(--ink); color: var(--paper); }
+    .reel-sec .wrap { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+    .reel { width: min(320px, 78vw); margin: 0 auto; aspect-ratio: 9 / 16; border-radius: 26px; overflow: hidden; border: 3px solid var(--terra); background: var(--olive); }
+    .reel video { width: 100%; height: 100%; object-fit: cover; }
+    .reel-sec h2 em { color: #e9a27f; }
+    .reel-sec p { margin-top: 18px; opacity: 0.8; font-size: 18px; max-width: 520px; }
+    .info { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 36px; }
+    .info div { padding: 26px; border-radius: 20px; background: var(--paper); }
+    .info h3 { font-size: 26px; }
+    .info p { margin-top: 10px; color: var(--muted); font-size: 15.5px; }
+    footer { background: var(--ink); color: rgba(255, 250, 241, 0.7); padding: 38px 0; font-size: 14.5px; }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; }
+    footer a { color: #e9a27f; }
+    @media (max-width: 900px) {
+      .links { display: none; }
+      .hero .wrap, .reel-sec .wrap { grid-template-columns: 1fr; }
+      .grid, .info { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) { .grid, .info { grid-template-columns: 1fr; } }
+    .demo-bar a, footer a { text-decoration: underline; text-underline-offset: 2px; }
+</style>
+</head>
+<body>
+  <div class="demo-bar">Concept demo by <a href="../../">Six Pixel</a> — Oak &amp; Ash Home is a fictional business.</div>
+  <div class="sale-bar">Fall sale — up to 25% off selected pieces · free GTA delivery over $999</div>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#">Oak <i>&amp;</i> Ash Home</a>
+      <nav class="links" aria-label="Main"><a href="#shop">Shop the sale</a><a href="#video">Watch</a><a href="#visit">Showroom</a><a href="#visit">Delivery</a></nav>
+      <a class="btn" href="#visit">Book a visit</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="h">
+      <div class="wrap">
+        <div>
+          <p class="eyebrow">Solid wood · made to last</p>
+          <h1 id="h">Furniture for <em>the long run.</em></h1>
+          <p>Solid oak and ash pieces, built by small Canadian workshops and finished in our Toronto showroom. See them in person, or order online with delivery across the GTA.</p>
+          <div class="cta"><a class="btn" href="#shop">Shop the fall sale</a><a class="btn line" href="#visit">Visit the showroom</a></div>
+          <div class="perks"><span><b>Free delivery</b> over $999 in the GTA</span><span><b>30-day</b> returns</span><span><b>10-year</b> frame warranty</span></div>
+        </div>
+        <div class="room" aria-hidden="true">
+          <svg viewBox="0 0 400 400"><rect x="0" y="270" width="400" height="130" fill="#5c6345"/><rect x="250" y="60" width="110" height="140" rx="8" fill="#ece4d6" opacity=".9"/><rect x="262" y="72" width="86" height="116" rx="4" fill="#c9b99a"/><path d="M262 150 l30 -40 25 30 18 -20 13 18 v50 h-86z" fill="#8f8a63"/><rect x="60" y="180" width="260" height="80" rx="26" fill="#e7dcc8"/><rect x="44" y="210" width="60" height="70" rx="24" fill="#d8c9ae"/><rect x="276" y="210" width="60" height="70" rx="24" fill="#d8c9ae"/><rect x="84" y="226" width="212" height="52" rx="16" fill="#efe6d4"/><rect x="110" y="160" width="56" height="44" rx="12" fill="#c0643f"/><g fill="#3a2d22"><rect x="84" y="278" width="10" height="24" rx="3"/><rect x="286" y="278" width="10" height="24" rx="3"/></g><circle cx="70" cy="90" r="28" fill="#f2d39b" opacity=".8"/><path d="M70 118 v60" stroke="#3a2d22" stroke-width="4"/></svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="shop" style="padding-top:0" aria-labelledby="shop-h">
+      <div class="wrap">
+        <div class="shop-head">
+          <div><p class="eyebrow">Fall sale</p><h2 id="shop-h">Pieces we <em>love</em> right now.</h2></div>
+          <div class="filters" role="group" aria-label="Filter by room">
+            <button type="button" aria-pressed="true" data-f="all">All</button>
+            <button type="button" aria-pressed="false" data-f="living">Living</button>
+            <button type="button" aria-pressed="false" data-f="dining">Dining</button>
+            <button type="button" aria-pressed="false" data-f="bedroom">Bedroom</button>
+          </div>
+        </div>
+        <div class="grid" id="grid">
+          <article class="product" data-room="living">
+            <div class="pic"><span class="tag">−21%</span><svg viewBox="0 0 200 120" aria-hidden="true"><rect x="20" y="30" width="160" height="56" rx="18" fill="#e7dcc8"/><rect x="8" y="56" width="40" height="44" rx="16" fill="#d8c9ae"/><rect x="152" y="56" width="40" height="44" rx="16" fill="#d8c9ae"/><rect x="36" y="66" width="128" height="34" rx="10" fill="#efe6d4"/><rect x="36" y="100" width="8" height="14" rx="2" fill="#3a2d22"/><rect x="156" y="100" width="8" height="14" rx="2" fill="#3a2d22"/></svg></div>
+            <div class="body"><h3>Harbour sofa</h3><p>Solid oak frame · Belgian linen · 3 colours</p><div class="price"><span class="now">$1,490</span><s>$1,890</s></div></div>
+          </article>
+          <article class="product" data-room="dining">
+            <div class="pic"><span class="tag">−21%</span><svg viewBox="0 0 200 120" aria-hidden="true"><rect x="16" y="40" width="168" height="14" rx="4" fill="#c9a97a"/><rect x="30" y="54" width="10" height="56" fill="#a8865a"/><rect x="160" y="54" width="10" height="56" fill="#a8865a"/><rect x="70" y="20" width="16" height="22" rx="4" fill="#6b7350"/><circle cx="120" cy="34" r="8" fill="#c0643f"/></svg></div>
+            <div class="body"><h3>Ash dining table</h3><p>Solid ash · seats 6 · oil finish</p><div class="price"><span class="now">$990</span><s>$1,250</s></div></div>
+          </article>
+          <article class="product" data-room="living">
+            <div class="pic"><span class="tag">−22%</span><svg viewBox="0 0 200 120" aria-hidden="true"><path d="M60 20 h80 q10 0 10 10 v50 h-100 v-50 q0 -10 10 -10z" fill="#d8c9ae"/><rect x="50" y="70" width="100" height="26" rx="10" fill="#efe6d4"/><rect x="44" y="56" width="16" height="40" rx="6" fill="#c9b99a"/><rect x="140" y="56" width="16" height="40" rx="6" fill="#c9b99a"/><rect x="58" y="96" width="6" height="18" fill="#3a2d22"/><rect x="136" y="96" width="6" height="18" fill="#3a2d22"/></svg></div>
+            <div class="body"><h3>Linen lounge chair</h3><p>Oak legs · removable cover</p><div class="price"><span class="now">$540</span><s>$690</s></div></div>
+          </article>
+          <article class="product" data-room="bedroom">
+            <div class="pic"><svg viewBox="0 0 200 120" aria-hidden="true"><rect x="20" y="30" width="20" height="74" rx="4" fill="#a8865a"/><rect x="36" y="64" width="150" height="30" rx="6" fill="#efe6d4"/><rect x="36" y="58" width="44" height="14" rx="6" fill="#ffffff"/><rect x="36" y="88" width="150" height="10" fill="#c9a97a"/><rect x="40" y="98" width="6" height="12" fill="#3a2d22"/><rect x="176" y="98" width="6" height="12" fill="#3a2d22"/></svg></div>
+            <div class="body"><h3>Fernhill bed frame</h3><p>Solid oak · queen &amp; king</p><div class="price"><span class="now">$1,350</span></div></div>
+          </article>
+          <article class="product" data-room="dining">
+            <div class="pic"><svg viewBox="0 0 200 120" aria-hidden="true"><path d="M78 20 h44 v44 h-44z" fill="#c9a97a"/><rect x="72" y="62" width="56" height="10" rx="3" fill="#a8865a"/><rect x="76" y="72" width="6" height="40" fill="#a8865a"/><rect x="118" y="72" width="6" height="40" fill="#a8865a"/></svg></div>
+            <div class="body"><h3>Ash dining chair</h3><p>Set of two · woven seat</p><div class="price"><span class="now">$460</span></div></div>
+          </article>
+          <article class="product" data-room="bedroom living">
+            <div class="pic"><svg viewBox="0 0 200 120" aria-hidden="true"><rect x="60" y="14" width="80" height="96" rx="4" fill="#c9a97a"/><g stroke="#a8865a" stroke-width="4"><path d="M60 46 h80M60 78 h80"/></g><rect x="70" y="24" width="18" height="18" fill="#6b7350"/><rect x="112" y="56" width="20" height="18" fill="#c0643f"/></svg></div>
+            <div class="body"><h3>Oak bookshelf</h3><p>3 shelves · wall anchor included</p><div class="price"><span class="now">$620</span></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="reel-sec" id="video" aria-labelledby="video-h">
+      <div class="wrap">
+        <div class="reel">
+          <video data-autoplay muted loop playsinline controls preload="none" poster="../../assets/img/furniture-reel-poster.webp" width="1080" height="1920" aria-label="15-second fall sale promo video for Oak &amp; Ash Home">
+            <source src="../../assets/video/furniture-reel.mp4" type="video/mp4">
+            <source src="../../assets/video/furniture-reel.webm" type="video/webm">
+          </video>
+        </div>
+        <div>
+          <p class="eyebrow" style="color:#e9a27f">On Instagram &amp; TikTok</p>
+          <h2 id="video-h">The sale, in <em>fifteen seconds.</em></h2>
+          <p>This promo runs as a Reel and a TikTok ad, and every tap lands on the sale section above — products, prices and delivery info in one place.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="visit" aria-labelledby="visit-h">
+      <div class="wrap">
+        <p class="eyebrow">Showroom &amp; delivery</p>
+        <h2 id="visit-h">Sit on it <em>before you buy.</em></h2>
+        <div class="info">
+          <div><h3>Showroom</h3><p>Junction Triangle, Toronto. Open daily 10 am – 6 pm. Book a 30-minute styling visit for free.</p><p style="margin-top:16px"><a class="btn" href="mailto:hello@oakandash.example?subject=Showroom%20visit">Book a visit</a></p></div>
+          <div><h3>Delivery</h3><p>Free white-glove delivery over $999 within the GTA. Elsewhere in Ontario at a flat rate.</p></div>
+          <div><h3>Returns &amp; warranty</h3><p>30-day returns on in-stock items and a 10-year warranty on solid-wood frames.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap"><span>Oak &amp; Ash Home · fictional demo business</span><span>Website &amp; video concept by <a href="../../">Six Pixel</a></span></div></footer>
+
+  <script>
+    const btns = document.querySelectorAll('.filters button');
+    btns.forEach(b => b.addEventListener('click', () => {
+      btns.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      document.querySelectorAll('#grid .product').forEach(p => { p.hidden = b.dataset.f !== 'all' && !p.dataset.room.split(' ').includes(b.dataset.f); });
+    }));
+    const v = document.querySelector('video[data-autoplay]');
+    if (v && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      v.controls = false;
+      new IntersectionObserver(([e]) => { e.isIntersecting ? v.play().catch(() => { v.controls = true; }) : v.pause(); }, { threshold: 0.3 }).observe(v);
+    }
+  </script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 # Six Pixel
 
-Studio site and demo work for **Six Pixel** — websites, local SEO / AI-search (GEO) visibility and short promo videos for Toronto restaurants and small businesses.
+Studio site and demo work for **Six Pixel** — a customer-growth studio for Toronto local businesses: growth audits (website, SEO, AI search / GEO, Google Maps, reviews, social), fixes, social content and short promo videos.
 
 Live (after enabling GitHub Pages): https://xuanchen97.github.io/sixpixel-studio/
 
@@ -9,16 +9,18 @@ Live (after enabling GitHub Pages): https://xuanchen97.github.io/sixpixel-studio
 | Path | What it is |
 |---|---|
 | `index.html`, `css/`, `js/` | The studio site (plain HTML/CSS/JS, no build step) |
+| `demos/auto/` | Demo: auto repair — price ranges, online booking, promo reel |
+| `demos/furniture/` | Demo: furniture showroom — products with sale prices, room filters, promo reel |
 | `demos/saltwick/` | Demo: seasonal bistro — reservations, weekly menu, private dining |
 | `demos/lantern/` | Demo: dumpling counter — ordering, dietary filters, promo reel |
 | `demos/fernwood/` | Demo: bakery — live bake schedule, cake pre-orders, allergens |
-| `assets/video/lantern-reel.*` | 15-second 9:16 promo reel (MP4 + WebM) |
-| `tools/reel/` | Source + renderer for the reel (HTML animation → Playwright → FFmpeg) |
+| `assets/video/*-reel.*` | 15-second 9:16 promo reels for each demo (MP4 + WebM) |
+| `tools/reel/` | Reel engine + per-demo configs + renderer (HTML animation → Playwright → FFmpeg) |
 | `tools/og.html` | Source for `assets/og-image.png` |
 | `docs/TOOLKIT.md` | Curated free/open-source tools for sites, video and SEO/GEO, with licence notes |
 | `robots.txt`, `sitemap.xml`, `llms.txt` | Search and AI-assistant discovery files |
 
-All three demo businesses are **fictional**. Demo pages carry `noindex` so made-up businesses never show up in Google or Maps results, but they keep full `Restaurant`/`Bakery` structured data so you can show clients what it looks like.
+All five demo businesses are **fictional**. Demo pages carry `noindex` so made-up businesses never show up in Google or Maps results, but they keep full `AutoRepair`/`FurnitureStore`/`Restaurant`/`Bakery` structured data so you can show clients what it looks like.
 
 ## Preview locally
 
@@ -37,7 +39,8 @@ If you later buy a domain (e.g. `sixpixel.ca`), add it under the same Pages sett
 ## Regenerate media
 
 ```bash
-node tools/reel/render.js   # needs Playwright (Chromium) + ffmpeg
+node tools/reel/render.js auto        # or furniture, saltwick, fernwood, lantern
+# needs Playwright (Chromium) + ffmpeg
 ```
 
 ## Before going live with real clients

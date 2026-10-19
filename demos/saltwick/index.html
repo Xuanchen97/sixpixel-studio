@@ -187,6 +187,22 @@
       </div>
     </section>
 
+    <section aria-labelledby="reel-h" style="background:var(--cream)">
+      <div class="wrap split">
+        <div>
+          <p class="label">On Instagram</p>
+          <h2 id="reel-h">This week's menu, <em>as a Reel.</em></h2>
+          <p style="margin-top:18px;font-size:18px;color:var(--muted)">Every Wednesday a 15-second video announces the new menu on Instagram and TikTok — and sends people straight to the booking button.</p>
+        </div>
+        <div style="width:min(300px,76vw);aspect-ratio:9/16;border-radius:24px;overflow:hidden;border:3px solid #1f3a2e;margin:0 auto">
+            <video data-autoplay muted loop playsinline controls preload="none" poster="../../assets/img/saltwick-reel-poster.webp" width="1080" height="1920" aria-label="15-second weekly menu promo video for Saltwick Kitchen" style="width:100%;height:100%;object-fit:cover">
+              <source src="../../assets/video/saltwick-reel.mp4" type="video/mp4">
+              <source src="../../assets/video/saltwick-reel.webm" type="video/webm">
+            </video>
+          </div>
+      </div>
+    </section>
+
     <section class="private" id="private" aria-labelledby="private-h">
       <div class="wrap split">
         <div>
@@ -248,6 +264,12 @@
     // Highlight today's opening hours.
     const d = new Date().getDay();
     document.querySelectorAll('#hours tr').forEach(r => { if (r.dataset.day.split(',').map(Number).includes(d)) r.classList.add('today'); });
+    // Promo reel: play only while visible
+    const rv = document.querySelector('video[data-autoplay]');
+    if (rv && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      rv.controls = false;
+      new IntersectionObserver(([e]) => { e.isIntersecting ? rv.play().catch(() => { rv.controls = true; }) : rv.pause(); }, { threshold: 0.3 }).observe(rv);
+    }
   </script>
 </body>
 </html>

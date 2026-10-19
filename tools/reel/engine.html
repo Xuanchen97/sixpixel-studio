@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!-- Six Pixel reel engine: renders a vertical promo video from a config file.
+     Open engine.html?c=NAME to load configs/NAME.js. window.render(t) draws the frame at t seconds;
+     tools/reel/render.js captures it frame by frame and encodes MP4 + WebM with FFmpeg.
+
+     Scene types: hook · visual · list · offer · end  (see configs/*.js for examples) -->
+<html><head><meta charset="utf-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; }
+body { position: relative; }
+.scene { position: absolute; inset: 0; overflow: hidden; display: none; }
+.el { position: absolute; left: 90px; right: 90px; will-change: transform, opacity; }
+.center { text-align: center; }
+.big { font-weight: 800; letter-spacing: -0.045em; line-height: 0.92; }
+.cap { font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; }
+.card { border-radius: 36px; padding: 38px 46px; display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.card b { font-size: 60px; letter-spacing: -0.03em; line-height: 1.02; }
+.card span { font-size: 40px; font-weight: 700; white-space: nowrap; }
+.card s { opacity: 0.55; margin-right: 14px; font-weight: 500; }
+.pill { display: inline-block; padding: 22px 40px; border-radius: 999px; font-size: 44px; font-weight: 800; letter-spacing: -0.01em; }
+.note { font-size: 30px; font-weight: 600; opacity: 0.7; }
+.art { position: absolute; left: 50%; top: 50%; }
+.dots i { position: absolute; border-radius: 50%; }
+</style>
+</head><body>
+<script>
+const params = new URLSearchParams(location.search);
+document.write('<script src="configs/' + (params.get('c') || 'auto') + '.js"><\/script>');
+</script>
+<script>
+(() => {
+  const R = window.REEL;
+  // Fonts
+  const css = R.fonts.map(f => `@font-face{font-family:"${f.family}";src:url("${f.url}") format("woff2");font-weight:${f.weight || '100 900'};}`).join('');
+  document.head.insertAdjacentHTML('beforeend', `<style>${css} body{font-family:"${R.theme.font}",sans-serif;} .big,.card b{font-family:"${R.theme.display || R.theme.font}",serif;}</style>`);
+
+  const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+  const ease = x => 1 - Math.pow(1 - clamp(x), 3);
+  const back = x => { x = clamp(x); const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+  const TRANS = 0.45;
+
+  // Build scenes
+  let t0 = 0;
+  const scenes = R.scenes.map((s, i) => {
+    const el = document.createElement('div');
+    el.className = 'scene';
+    el.style.background = s.bg;
+    el.style.color = s.fg || R.theme.fg;
+    el.style.zIndex = i + 1;
+    const items = [];                       // [{node, at, kind}]
+    const add = (html, top, at, kind, extra = '') => {
+      const n = document.createElement('div');
+      n.className = 'el ' + extra;
+      n.style.top = top + 'px';
+      n.innerHTML = html;
+      el.appendChild(n);
+      items.push({ n, at, kind });
+      return n;
+    };
+    if (s.type === 'hook') {
+      let y = s.top || 640;
+      s.lines.forEach((l, k) => { add(`<div class="big center" style="font-size:${l.size || 170}px;color:${l.color || 'inherit'}">${l.text}</div>`, y, 0.15 + k * 0.45, 'rise'); y += (l.size || 170) * 1.08 * (l.text.split('<br>').length); });
+      if (s.sub) add(`<div class="note center" style="font-size:40px">${s.sub}</div>`, y + 40, 0.15 + s.lines.length * 0.45, 'fade');
+    } else if (s.type === 'visual') {
+      const n = add(`<div style="display:flex;justify-content:center">${s.svg}</div>`, s.artTop || 360, 0.25, 'pop');
+      n.dataset.wobble = s.wobble ? '1' : '';
+      add(`<div class="cap center" style="font-size:${s.captionSize || 96}px">${s.caption}</div>`, s.captionTop || 1300, 0.8, 'rise');
+      if (s.sub) add(`<div class="note center" style="font-size:40px">${s.sub}</div>`, (s.captionTop || 1300) + (s.captionSize || 96) * 2.3, 1.1, 'fade');
+    } else if (s.type === 'list') {
+      add(`<div class="big center" style="font-size:${s.titleSize || 120}px">${s.title}</div>`, s.titleTop || 300, 0.15, 'drop');
+      let y = s.listTop || 760;
+      s.items.forEach((it, k) => {
+        add(`<div class="card" style="background:${s.cardBg};color:${s.cardFg};${s.cardStyle || ''}"><b>${it.title}</b><span style="color:${s.priceColor || 'inherit'}">${it.price || ''}</span></div>${it.sub ? `<div class="note" style="margin:14px 0 0 12px">${it.sub}</div>` : ''}`, y, 0.55 + k * 0.4, k % 2 ? 'slideR' : 'slideL');
+        y += s.gap || 290;
+      });
+    } else if (s.type === 'offer') {
+      add(`<div class="big center" style="font-size:${s.size || 170}px;color:${s.color || 'inherit'}">${s.big}</div>`, s.top || 600, 0.2, 'zoom');
+      if (s.pill) add(`<div class="center"><span class="pill" style="background:${s.pillBg};color:${s.pillFg}">${s.pill}</span></div>`, (s.top || 600) + (s.size || 170) * 1.0 * (s.big.split('<br>').length) + 80, 0.8, 'rise');
+      if (s.sub) add(`<div class="note center" style="font-size:40px">${s.sub}</div>`, s.subTop || 1500, 1.1, 'fade');
+    } else if (s.type === 'end') {
+      const n = add(`<div style="display:flex;justify-content:center">${s.logo}</div>`, s.logoTop || 560, 0.1, 'drop');
+      n.dataset.wobble = '1';
+      add(`<div class="big center" style="font-size:${s.nameSize || 140}px">${s.name}</div>`, s.nameTop || 960, 0.4, 'rise');
+      add(`<div class="center"><span class="pill" style="background:${s.pillBg};color:${s.pillFg}">${s.cta}</span></div>`, s.ctaTop || 1180, 0.75, 'zoom');
+      add(`<div class="note center">${R.disclaimer}</div>`, 1760, 1.0, 'fade');
+    }
+    document.body.appendChild(el);
+    const rec = { el, items, start: t0, dur: s.dur, wipe: s.wipe || (i % 2 ? 'circle' : 'up') };
+    t0 += s.dur;
+    return rec;
+  });
+  window.REEL_DURATION = t0;
+
+  const anim = (kind, k) => {
+    const e = ease(k), b = back(k);
+    switch (kind) {
+      case 'rise': return { o: e, t: `translateY(${(1 - b) * 110}px)` };
+      case 'drop': return { o: e, t: `translateY(${(1 - b) * -140}px)` };
+      case 'pop': return { o: e, t: `scale(${0.2 + 0.8 * b})` };
+      case 'zoom': return { o: e, t: `scale(${0.75 + 0.25 * b})` };
+      case 'slideL': return { o: clamp(k * 2), t: `translateX(${(1 - b) * -1100}px) rotate(${(1 - b) * -7}deg)` };
+      case 'slideR': return { o: clamp(k * 2), t: `translateX(${(1 - b) * 1100}px) rotate(${(1 - b) * 7}deg)` };
+      default: return { o: e, t: 'none' };
+    }
+  };
+
+  window.render = t => {
+    scenes.forEach((s, i) => {
+      const local = t - s.start;
+      const visible = local >= 0 && local < s.dur + TRANS;
+      s.el.style.display = visible ? 'block' : 'none';
+      if (!visible) return;
+      const w = i === 0 ? 1 : ease(local / TRANS);
+      s.el.style.clipPath = s.wipe === 'circle' ? `circle(${w * 150}% at 50% 100%)` : `inset(${(1 - w) * 100}% 0 0 0)`;
+      s.items.forEach(({ n, at, kind }) => {
+        const k = clamp((local - at) / 0.6);
+        const a = anim(kind, k);
+        let tf = a.t;
+        if (n.dataset.wobble) tf += ` rotate(${Math.sin(t * 2.4) * 2.5}deg)`;
+        n.style.opacity = a.o;
+        n.style.transform = tf;
+      });
+    });
+  };
+  render(0);
+})();
+</script>
+</body></html>
