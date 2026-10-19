@@ -1,0 +1,20 @@
+# Six Pixel
+
+> Six Pixel is a small Toronto studio that fixes and rebuilds websites for restaurants and small businesses, improves their visibility on Google Search, Google Maps and AI assistants (local SEO and GEO), and produces short vertical promo videos for Instagram Reels, TikTok and YouTube Shorts.
+
+- Area served: Toronto and the Greater Toronto Area (Ontario, Canada).
+- Founder: Xuanchen (Jason) Liu — https://xuanchen97.github.io/
+- Contact: jasonliu97424@gmail.com
+- Starting point: a free 15-minute site check, followed by a fixed quote.
+
+## Services
+
+- Website refresh: text menus with prices and dietary tags, hours, maps, booking and ordering links, mobile speed and accessibility.
+- Search & AI visibility: Google Business Profile clean-up, Restaurant/LocalBusiness structured data, consistent directory listings, plain-language FAQs and llms.txt.
+- Promo videos: short vertical videos built from the client's own photos and clips, motion graphics and AI-assisted editing, captions; human-reviewed and posted only with approval.
+
+## Demo sites (fictional businesses)
+
+- [Saltwick Kitchen](https://xuanchen97.github.io/sixpixel-studio/demos/saltwick/): seasonal bistro — reservations, weekly menu, private dining.
+- [Lantern Lane Dumplings](https://xuanchen97.github.io/sixpixel-studio/demos/lantern/): counter-service dumplings — online ordering, dietary filters, promo reel.
+- [Fernwood Bakehouse](https://xuanchen97.github.io/sixpixel-studio/demos/fernwood/): neighbourhood bakery — live bake schedule, cake pre-orders, allergen table.

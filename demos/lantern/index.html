@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Lantern Lane Dumplings · Hand-Folded Dumplings in Kensington Market (Demo)</title>
+  <meta name="description" content="Concept demo by Six Pixel: an order-first site for a late-night dumpling counter in Kensington Market, Toronto. Fictional business.">
+  <!-- Demo of a fictional business: kept out of search results on purpose. -->
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#c63b22">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../../assets/fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Lantern Lane Dumplings (demo)",
+    "description": "Fictional late-night dumpling counter used as a Six Pixel concept demo.",
+    "servesCuisine": ["Chinese", "Dumplings"],
+    "priceRange": "$",
+    "address": { "@type": "PostalAddress", "streetAddress": "Kensington Market (fictional)", "addressLocality": "Toronto", "addressRegion": "ON", "addressCountry": "CA" },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Sunday"], "opens": "11:00", "closes": "23:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday"], "opens": "11:00", "closes": "01:00" }
+    ],
+    "potentialAction": { "@type": "OrderAction", "target": "https://lanternlane.example/order" },
+    "hasMenu": { "@type": "Menu", "hasMenuSection": [ { "@type": "MenuSection", "name": "Dumplings", "hasMenuItem": [
+      { "@type": "MenuItem", "name": "Pork & chive dumplings (12)", "offers": { "@type": "Offer", "price": "14.50", "priceCurrency": "CAD" } },
+      { "@type": "MenuItem", "name": "Mushroom & tofu dumplings (12)", "suitableForDiet": "https://schema.org/VeganDiet", "offers": { "@type": "Offer", "price": "13.50", "priceCurrency": "CAD" } },
+      { "@type": "MenuItem", "name": "Chili-oil wontons (10)", "offers": { "@type": "Offer", "price": "12.00", "priceCurrency": "CAD" } }
+    ] } ] }
+  }
+  </script>
+  <style>
+    @font-face { font-family: "Bricolage"; src: url("../../assets/fonts/bricolage.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
+    :root { --red: #c63b22; --red-2: #a52f1a; --yellow: #f2c14e; --cream: #fff6e8; --ink: #2a1d14; --muted: #6b5545; --font: "Bricolage", system-ui, sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--ink); font: 400 17px/1.6 var(--font); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { font: inherit; cursor: pointer; }
+    h1, h2, h3 { font-weight: 800; line-height: 0.92; letter-spacing: -0.04em; }
+    .wrap { max-width: 1140px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
+    :focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+    .demo-bar { background: #111; color: #eee; font-size: 13px; text-align: center; padding: 9px 16px; }
+    .demo-bar a { color: var(--yellow); text-decoration: underline; text-underline-offset: 3px; }
+    header.top { position: sticky; top: 0; z-index: 10; background: var(--red); color: var(--cream); border-bottom: 3px solid var(--ink); }
+    header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 21px; letter-spacing: -0.03em; }
+    .lantern { width: 26px; height: 32px; border-radius: 10px 10px 12px 12px; background: var(--yellow); border: 3px solid var(--ink); position: relative; }
+    .lantern::before { content: ""; position: absolute; left: 50%; top: -9px; width: 3px; height: 7px; background: var(--ink); transform: translateX(-50%); }
+    .order { display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 20px; border-radius: 12px; background: var(--yellow); color: var(--ink); font-weight: 800; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); transition: transform 0.15s, box-shadow 0.15s; }
+    .order:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+    .order:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+    .hero { background: var(--red); color: var(--cream); padding: clamp(48px, 8vw, 96px) 0; overflow: hidden; }
+    .hero .wrap { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
+    .open { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: var(--ink); font-weight: 700; font-size: 14px; }
+    .open i { width: 9px; height: 9px; border-radius: 50%; background: #5ee08a; box-shadow: 0 0 0 4px rgba(94, 224, 138, 0.25); }
+    .open.closed i { background: #ff8a7a; box-shadow: 0 0 0 4px rgba(255, 138, 122, 0.25); }
+    .hero h1 { margin-top: 22px; font-size: clamp(64px, 11vw, 150px); }
+    .hero h1 span { color: var(--yellow); display: block; }
+    .hero p { margin-top: 22px; font-size: 20px; max-width: 520px; }
+    .hero .cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; align-items: center; }
+    .hero .cta a.alt { font-weight: 700; text-decoration: underline; text-underline-offset: 5px; }
+    .art { position: relative; aspect-ratio: 1; max-width: 420px; justify-self: center; width: 100%; }
+    .bowl { position: absolute; inset: 30% 6% 6%; background: var(--ink); border-radius: 0 0 50% 50% / 0 0 80% 80%; }
+    .dumpling { z-index: 1; }
+    .bowl::before { content: ""; position: absolute; left: -4%; right: -4%; top: -6%; height: 14%; border-radius: 999px; background: var(--yellow); border: 3px solid var(--ink); }
+    .dumpling { position: absolute; width: 34%; aspect-ratio: 1.5; background: var(--cream); border: 3px solid var(--ink); border-radius: 60% 60% 40% 40% / 90% 90% 30% 30%; }
+    .dumpling::after { content: ""; position: absolute; left: 18%; right: 18%; top: 14%; height: 30%; border-top: 3px dotted var(--ink); border-radius: 50%; }
+    .d1 { left: 12%; top: 17%; transform: rotate(-14deg); } .d2 { left: 33%; top: 11%; } .d3 { right: 12%; top: 17%; transform: rotate(14deg); }
+    .steam { position: absolute; top: -4%; width: 6px; height: 22%; border-radius: 999px; background: rgba(255, 246, 232, 0.6); animation: rise 2.6s ease-in-out infinite; }
+    .s1 { left: 30%; } .s2 { left: 50%; animation-delay: 0.6s; } .s3 { left: 70%; animation-delay: 1.2s; }
+    @keyframes rise { 0% { transform: translateY(20px) scaleY(0.6); opacity: 0; } 40% { opacity: 1; } 100% { transform: translateY(-20px) scaleY(1); opacity: 0; } }
+    .strip { background: var(--yellow); border-block: 3px solid var(--ink); font-weight: 800; font-size: 20px; padding: 14px 0; text-align: center; letter-spacing: -0.02em; }
+    section { padding: clamp(64px, 9vw, 110px) 0; }
+    h2 { font-size: clamp(44px, 7vw, 84px); }
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; margin: 30px 0 26px; }
+    .filters button { padding: 9px 16px; border-radius: 999px; border: 3px solid var(--ink); background: var(--cream); font-weight: 700; font-size: 15px; }
+    .filters button[aria-pressed="true"] { background: var(--ink); color: var(--cream); }
+    .menu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .item { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; padding: 20px; border: 3px solid var(--ink); border-radius: 16px; background: #fff; }
+    .item[hidden] { display: none; }
+    .item h3 { font-size: 23px; letter-spacing: -0.02em; line-height: 1.1; }
+    .item .price { font-weight: 800; font-size: 20px; color: var(--red); }
+    .item p { grid-column: 1 / -1; color: var(--muted); font-size: 15px; }
+    .item .tags { grid-column: 1 / -1; display: flex; gap: 6px; flex-wrap: wrap; }
+    .item .tags span { padding: 2px 9px; border-radius: 999px; background: var(--cream); border: 2px solid var(--ink); font-size: 12px; font-weight: 700; }
+    .item.hot { background: var(--yellow); }
+    .item.hot p { color: var(--ink); }
+    .reel-sec { background: var(--ink); color: var(--cream); }
+    .reel-sec .wrap { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+    .reel { aspect-ratio: 9 / 16; max-width: 320px; width: 100%; margin: 0 auto; border-radius: 24px; overflow: hidden; border: 3px solid var(--yellow); background: var(--red); }
+    .reel video { width: 100%; height: 100%; object-fit: cover; }
+    .reel-sec p { margin-top: 18px; font-size: 19px; opacity: 0.85; max-width: 520px; }
+    .visit { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+    .card { padding: 26px; border: 3px solid var(--ink); border-radius: 18px; background: #fff; }
+    .card h3 { font-size: 28px; }
+    .card ul { margin-top: 14px; display: grid; gap: 8px; }
+    .card li { display: flex; justify-content: space-between; border-bottom: 2px dashed rgba(42, 29, 20, 0.2); padding-bottom: 8px; }
+    .card li.today { color: var(--red); font-weight: 800; }
+    .card p { margin-top: 12px; color: var(--muted); }
+    footer { background: var(--red); color: var(--cream); padding: 36px 0; border-top: 3px solid var(--ink); font-weight: 600; font-size: 15px; }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; }
+    footer a { text-decoration: underline; text-underline-offset: 4px; }
+    @media (max-width: 820px) {
+      .hero .wrap, .reel-sec .wrap, .visit { grid-template-columns: 1fr; }
+      .menu { grid-template-columns: 1fr; }
+      .art { max-width: 300px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .steam { animation: none; opacity: 0.6; } }
+  </style>
+</head>
+<body>
+  <div class="demo-bar">Concept demo by <a href="../../">Six Pixel</a> — Lantern Lane Dumplings is a fictional business.</div>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#"><span class="lantern" aria-hidden="true"></span>Lantern Lane</a>
+      <a class="order" href="#menu">Order pickup →</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="h">
+      <div class="wrap">
+        <div>
+          <span class="open" id="open-status"><i></i><span>Open today 11 am – 11 pm</span></span>
+          <h1 id="h">Hand-folded. <span>Open late.</span></h1>
+          <p>Dumplings folded every morning in Kensington Market. Order pickup in two taps, or grab a stool at the counter.</p>
+          <div class="cta"><a class="order" href="#menu">Order pickup →</a><a class="alt" href="#visit">Hours &amp; directions</a></div>
+        </div>
+        <div class="art" aria-hidden="true">
+          <span class="steam s1"></span><span class="steam s2"></span><span class="steam s3"></span>
+          <div class="bowl"></div>
+          <div class="dumpling d1"></div><div class="dumpling d2"></div><div class="dumpling d3"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="strip">Vegetarian &amp; vegan options · Fri–Sat open till 1 am · Pickup ready in ~15 min</div>
+
+    <section id="menu" aria-labelledby="menu-h">
+      <div class="wrap">
+        <h2 id="menu-h">The menu</h2>
+        <div class="filters" role="group" aria-label="Filter menu">
+          <button type="button" aria-pressed="true" data-f="all">All</button>
+          <button type="button" aria-pressed="false" data-f="veg">Vegetarian</button>
+          <button type="button" aria-pressed="false" data-f="vegan">Vegan</button>
+          <button type="button" aria-pressed="false" data-f="spicy">Spicy</button>
+        </div>
+        <div class="menu" id="menu-list">
+          <article class="item hot" data-tags="">
+            <h3>Pork &amp; chive (12)</h3><span class="price">14.50</span>
+            <p>Our most-ordered dumpling. Pan-fried or steamed.</p>
+            <div class="tags"><span>Most ordered</span></div>
+          </article>
+          <article class="item" data-tags="veg vegan">
+            <h3>Mushroom &amp; tofu (12)</h3><span class="price">13.50</span>
+            <p>Shiitake, firm tofu, napa cabbage, ginger.</p>
+            <div class="tags"><span>Vegan</span></div>
+          </article>
+          <article class="item" data-tags="spicy">
+            <h3>Chili-oil wontons (10)</h3><span class="price">12.00</span>
+            <p>Pork wontons in house chili oil and black vinegar.</p>
+            <div class="tags"><span>Spicy</span></div>
+          </article>
+          <article class="item" data-tags="veg">
+            <h3>Egg &amp; chive (12)</h3><span class="price">13.00</span>
+            <p>Scrambled egg, garlic chives, glass noodles.</p>
+            <div class="tags"><span>Vegetarian</span></div>
+          </article>
+          <article class="item" data-tags="veg vegan">
+            <h3>Scallion pancake</h3><span class="price">8.00</span>
+            <p>Flaky, layered, with soy-vinegar dip.</p>
+            <div class="tags"><span>Vegan</span></div>
+          </article>
+          <article class="item" data-tags="veg vegan spicy">
+            <h3>Smashed cucumber</h3><span class="price">7.00</span>
+            <p>Garlic, chili crisp, sesame.</p>
+            <div class="tags"><span>Vegan</span><span>Spicy</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="reel-sec" aria-labelledby="reel-h">
+      <div class="wrap">
+        <div class="reel">
+          <video data-autoplay muted loop playsinline controls preload="none" poster="../../assets/img/lantern-reel-poster.webp" width="1080" height="1920" aria-label="15-second promo reel for Lantern Lane Dumplings">
+            <source src="../../assets/video/lantern-reel.webm" type="video/webm">
+            <source src="../../assets/video/lantern-reel.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div>
+          <h2 id="reel-h" style="color:var(--yellow)">Seen it on Reels?</h2>
+          <p>This 15-second promo runs on Instagram and TikTok and points straight back to this page — where the menu, hours and order button are waiting.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="visit" aria-labelledby="visit-h">
+      <div class="wrap">
+        <h2 id="visit-h">Come by</h2>
+        <div class="visit">
+          <div class="card">
+            <h3>Hours</h3>
+            <ul id="hours">
+              <li data-day="1,2,3,4,0"><span>Sun – Thu</span><span>11 am – 11 pm</span></li>
+              <li data-day="5,6"><span>Fri – Sat</span><span>11 am – 1 am</span></li>
+            </ul>
+            <p>Kitchen closes 15 minutes before closing.</p>
+          </div>
+          <div class="card">
+            <h3>Find us</h3>
+            <p>Kensington Market, Toronto. Steps from the Spadina streetcar. Counter seating for 14 — no reservations.</p>
+            <p><a class="order" href="#" onclick="alert('In a real site this opens Google Maps directions.');return false;">Get directions →</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap"><span>Lantern Lane Dumplings · fictional demo business</span><span>Website &amp; reel concept by <a href="../../">Six Pixel</a></span></div>
+  </footer>
+
+  <script>
+    // Menu filters
+    const btns = document.querySelectorAll('.filters button');
+    btns.forEach(b => b.addEventListener('click', () => {
+      btns.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      const f = b.dataset.f;
+      document.querySelectorAll('#menu-list .item').forEach(it => { it.hidden = f !== 'all' && !it.dataset.tags.split(' ').includes(f); });
+    }));
+    // Today's hours + open/closed badge (Toronto time)
+    const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Toronto' }));
+    const day = now.getDay(), h = now.getHours() + now.getMinutes() / 60;
+    document.querySelectorAll('#hours li').forEach(li => { if (li.dataset.day.split(',').map(Number).includes(day)) li.classList.add('today'); });
+    const lateNight = day === 5 || day === 6;              // Fri & Sat open until 1 am
+    const afterMidnight = (day === 6 || day === 0) && h < 1; // still Friday/Saturday night
+    const isOpen = afterMidnight || (h >= 11 && h < (lateNight ? 24 : 23));
+    const late = lateNight || afterMidnight;
+    const badge = document.getElementById('open-status');
+    badge.classList.toggle('closed', !isOpen);
+    badge.querySelector('span').textContent = isOpen ? (late ? 'Open now · until 1 am' : 'Open now · until 11 pm') : 'Closed now · opens 11 am';
+    // Reel: play only while visible
+    const v = document.querySelector('video[data-autoplay]');
+    if (v && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      v.controls = false;
+      new IntersectionObserver(([e]) => { e.isIntersecting ? v.play().catch(() => { v.controls = true; }) : v.pause(); }, { threshold: 0.3 }).observe(v);
+    }
+  </script>
+</body>
+</html>

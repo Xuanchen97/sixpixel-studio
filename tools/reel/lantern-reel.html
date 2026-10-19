@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!-- Source for assets/video/lantern-reel.*: a deterministic 15 s, 1080x1920 motion promo.
+     render(t) draws the frame at time t (seconds); tools/reel/render.js captures 30 fps. -->
+<html><head><meta charset="utf-8"><style>
+@font-face { font-family: "Bricolage"; src: url("../../assets/fonts/bricolage.woff2") format("woff2"); font-weight: 200 800; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1080px; height: 1920px; overflow: hidden; font-family: "Bricolage", sans-serif; background: #c63b22; color: #fff6e8; }
+#stage { position: absolute; inset: 0; overflow: hidden; }
+.layer { position: absolute; inset: 0; will-change: transform, opacity; }
+.big { font-weight: 800; letter-spacing: -0.045em; line-height: 0.9; }
+#bg2 { background: #f2c14e; }
+#bg3 { background: #2a1d14; }
+.steam { position: absolute; width: 22px; border-radius: 99px; background: rgba(255, 246, 232, 0.55); }
+.card { position: absolute; left: 90px; right: 90px; height: 230px; border-radius: 40px; background: #fff6e8; color: #2a1d14; border: 8px solid #2a1d14; box-shadow: 16px 16px 0 #2a1d14; padding: 40px 50px; display: flex; flex-direction: column; justify-content: center; }
+.card b { font-size: 70px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+.card span { margin-top: 14px; font-size: 40px; font-weight: 700; color: #c63b22; }
+.dumpling { position: absolute; left: 50%; top: 50%; width: 640px; height: 420px; margin: -210px 0 0 -320px; background: #fff6e8; border: 12px solid #2a1d14; border-radius: 60% 60% 40% 40% / 90% 90% 30% 30%; }
+.dumpling i { position: absolute; top: 16%; width: 26px; height: 26px; border-radius: 50%; background: #2a1d14; }
+.pill { display: inline-block; padding: 18px 34px; border-radius: 999px; background: #2a1d14; color: #fff6e8; font-size: 44px; font-weight: 800; }
+.lantern { width: 210px; height: 260px; border-radius: 70px 70px 90px 90px; background: #f2c14e; border: 14px solid #2a1d14; margin: 0 auto; position: relative; }
+.lantern::before { content: ""; position: absolute; left: 50%; top: -60px; width: 16px; height: 46px; background: #2a1d14; transform: translateX(-50%); }
+.center { position: absolute; left: 0; right: 0; text-align: center; }
+.small { font-size: 30px; font-weight: 600; opacity: 0.75; }
+</style></head><body><div id="stage">
+  <!-- Scene 1: hook -->
+  <div class="layer" id="s1">
+    <div class="steam" id="st1" style="left:330px;height:260px"></div>
+    <div class="steam" id="st2" style="left:530px;height:320px"></div>
+    <div class="steam" id="st3" style="left:730px;height:260px"></div>
+    <div class="center big" id="h1a" style="top:700px;font-size:190px">Hungry</div>
+    <div class="center big" id="h1b" style="top:900px;font-size:150px;color:#f2c14e">after 10 pm?</div>
+  </div>
+  <!-- Scene 2: product -->
+  <div class="layer" id="bg2"></div>
+  <div class="layer" id="s2">
+    <div class="dumpling" id="dump"><i style="left:22%"></i><i style="left:38%"></i><i style="left:54%"></i><i style="left:70%"></i></div>
+    <div class="center big" id="h2" style="top:1330px;font-size:120px;color:#2a1d14">Hand-folded<br>every morning.</div>
+  </div>
+  <!-- Scene 3: menu -->
+  <div class="layer" id="s3">
+    <div class="center big" id="h3" style="top:330px;font-size:130px">Tonight's<br>favourites</div>
+    <div class="card" id="c1" style="top:760px"><b>Pork &amp; chive</b><span>12 pcs · $14.50</span></div>
+    <div class="card" id="c2" style="top:1050px"><b>Mushroom &amp; tofu</b><span>Vegan · $13.50</span></div>
+    <div class="card" id="c3" style="top:1340px"><b>Chili-oil wontons</b><span>Spicy · $12.00</span></div>
+  </div>
+  <!-- Scene 4: hours -->
+  <div class="layer" id="bg3"></div>
+  <div class="layer" id="s4">
+    <div class="center big" id="h4a" style="top:620px;font-size:180px;color:#f2c14e">Open till<br>1 am</div>
+    <div class="center" id="h4b" style="top:1060px"><span class="pill" style="background:#c63b22">Fri &amp; Sat · Kensington Market</span></div>
+  </div>
+  <!-- Scene 5: end card -->
+  <div class="layer" id="s5" style="background:#c63b22">
+    <div class="center" id="logo" style="top:560px"><div class="lantern"></div></div>
+    <div class="center big" id="h5" style="top:930px;font-size:150px">Lantern Lane</div>
+    <div class="center" id="h5b" style="top:1130px"><span class="pill" style="background:#f2c14e;color:#2a1d14">Order pickup · link in bio</span></div>
+    <div class="center small" id="h5c" style="top:1760px">Concept demo by Six Pixel · fictional business</div>
+  </div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const easeOut = x => 1 - Math.pow(1 - clamp(x), 3);
+const easeBack = x => { x = clamp(x); const c = 1.70158; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+// p(t, start, dur) → 0..1 progress
+const p = (t, s, d) => clamp((t - s) / d);
+function set(id, o) { const el = $(id); el.style.opacity = o.op ?? 1; el.style.transform = o.tf ?? 'none'; }
+function vis(id, on) { $(id).style.display = on ? 'block' : 'none'; }
+
+window.render = function (t) {
+  // Scene windows
+  vis('s1', t < 3); vis('bg2', t >= 2.6 && t < 6.6); vis('s2', t >= 2.6 && t < 6.6);
+  vis('s3', t >= 6.4 && t < 10.4); vis('bg3', t >= 10.2 && t < 13.2); vis('s4', t >= 10.2 && t < 13.2); vis('s5', t >= 13);
+  // 1 · hook
+  set('h1a', { op: easeOut(p(t, 0.1, 0.4)), tf: `translateY(${(1 - easeBack(p(t, 0.1, 0.6))) * 120}px) scale(${0.9 + 0.1 * easeBack(p(t, 0.1, 0.6))})` });
+  set('h1b', { op: easeOut(p(t, 0.7, 0.4)), tf: `translateY(${(1 - easeBack(p(t, 0.7, 0.6))) * 120}px)` });
+  ['st1', 'st2', 'st3'].forEach((id, i) => { const k = ((t * 0.7 + i * 0.33) % 1); set(id, { op: Math.sin(k * Math.PI) * 0.9, tf: `translateY(${420 - k * 300}px) scaleY(${0.6 + k * 0.6})` }); });
+  // 2 · product (yellow wipe in)
+  const w2 = easeOut(p(t, 2.6, 0.5));
+  $('bg2').style.clipPath = `circle(${w2 * 150}% at 50% 100%)`;
+  set('dump', { op: easeOut(p(t, 2.9, 0.3)), tf: `scale(${easeBack(p(t, 2.9, 0.7))}) rotate(${Math.sin(t * 2) * 3}deg)` });
+  set('h2', { op: easeOut(p(t, 3.5, 0.4)), tf: `translateY(${(1 - easeOut(p(t, 3.5, 0.5))) * 80}px)` });
+  // 3 · menu cards
+  set('h3', { op: easeOut(p(t, 6.5, 0.4)), tf: `translateY(${(1 - easeOut(p(t, 6.5, 0.5))) * -60}px)` });
+  ['c1', 'c2', 'c3'].forEach((id, i) => { const k = easeBack(p(t, 6.9 + i * 0.45, 0.6)); set(id, { op: clamp(k * 1.4), tf: `translateX(${(1 - k) * (i % 2 ? 1200 : -1200)}px) rotate(${(1 - k) * (i % 2 ? 8 : -8)}deg)` }); });
+  // 4 · hours
+  $('bg3').style.clipPath = `inset(0 0 ${(1 - easeOut(p(t, 10.2, 0.5))) * 100}% 0)`;
+  set('h4a', { op: easeOut(p(t, 10.5, 0.4)), tf: `scale(${0.8 + 0.2 * easeBack(p(t, 10.5, 0.6))})` });
+  set('h4b', { op: easeOut(p(t, 11.1, 0.4)), tf: `translateY(${(1 - easeOut(p(t, 11.1, 0.5))) * 60}px)` });
+  // 5 · end card
+  set('s5', { op: easeOut(p(t, 13, 0.3)) });
+  set('logo', { op: 1, tf: `translateY(${(1 - easeBack(p(t, 13.1, 0.6))) * -300}px) rotate(${Math.sin(t * 3) * 4}deg)` });
+  set('h5', { op: easeOut(p(t, 13.4, 0.4)), tf: `translateY(${(1 - easeOut(p(t, 13.4, 0.5))) * 60}px)` });
+  set('h5b', { op: easeOut(p(t, 13.8, 0.4)), tf: `scale(${0.85 + 0.15 * easeBack(p(t, 13.8, 0.5))})` });
+  set('h5c', { op: 0.75 * easeOut(p(t, 14.1, 0.4)) });
+};
+render(0);
+</script></body></html>
